@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
@@ -14,6 +15,7 @@ import { AuthorItemComponent } from './authors/author-item/author-item.component
 import { AuthorDetailComponent } from './authors/author-detail/author-detail.component';
 import { AuthorEditComponent } from './authors/author-edit/author-edit.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

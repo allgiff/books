@@ -7,3 +7,7 @@
     float: left;
     padding: .25rem
   }
+
+  img {
+    width: 85px;
+  }

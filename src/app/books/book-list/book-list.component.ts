@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../book.model';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-book-list',
@@ -7,10 +8,13 @@ import { Book } from '../book.model';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
+  @Input() book: Book;
+  books: Book[];
 
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
+    this.books = this.bookService.getBooks();
   }
 
 }
