@@ -8,6 +8,7 @@ ul {
   
   li {
     float: left;
+    color: white;
   }
   
   li a {
@@ -25,4 +26,9 @@ ul {
 
   .navbar {
     background-color: #333;
+  }
+
+  .active {
+    background-color: #fff;
+    color: black;
   }

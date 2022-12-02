@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from './book.model';
 
 @Component({
   selector: 'app-books',
