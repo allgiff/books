@@ -21,4 +21,10 @@ button {
     background-color: teal !important;
     float: right;
     margin-top: -35px;
+    border: none;
 }
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
