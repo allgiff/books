@@ -31,7 +31,7 @@ export class AuthorService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     // add to database
-    this.http.post<{ message: string, author: Author }>('#',
+    this.http.post<{ message: string, author: Author }>('http://localhost:3000/authors',
       author,
       { headers: headers })
       .subscribe(
@@ -55,7 +55,7 @@ export class AuthorService {
     }
   
     // delete from database
-    this.http.delete('#' + author._id)
+    this.http.delete('http://localhost:3000/authors' + author._id)
       .subscribe(
         (response: Response) => {
           this.authors.splice(pos, 1);
@@ -65,11 +65,11 @@ export class AuthorService {
   }
 
    getAuthor(id: string) {
-    return this.http.get<{ message: string, author: Author }>('#' + id);
+    return this.http.get<{ message: string, author: Author }>('http://localhost:3000/authors' + id);
    }
 
    getAuthors() {
-    this.http.get<{message: string, authors: Author[]}>('#').subscribe(
+    this.http.get<{message: string, authors: Author[]}>('http://localhost:3000/authors').subscribe(
       (authorData) => {
         this.authors = authorData.authors;
         this.maxAuthorID = this.getMaxId();
@@ -87,7 +87,7 @@ export class AuthorService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     this.http
-    .put("#", authors, {
+    .put("http://localhost:3000/authors", authors, {
       headers: headers,
     })
     .subscribe(() => {
@@ -126,7 +126,7 @@ export class AuthorService {
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // update database
-  this.http.put('#' + originalAuthor._id,
+  this.http.put('http://localhost:3000/authors' + originalAuthor._id,
     newAuthor, { headers: headers })
     .subscribe(
       (response: Response) => {

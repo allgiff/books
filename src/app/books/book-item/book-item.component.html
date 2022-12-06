@@ -1,5 +1,5 @@
 <a class="list-group-item clearfix bookDiv" 
   [routerLink]="book._id"
   routerLinkActive="active">
-    {{ book?.imageUrl }}
+  <img [src]="book?.imageUrl" [alt]="book?.name">
   </a>

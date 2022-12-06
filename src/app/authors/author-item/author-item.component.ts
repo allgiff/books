@@ -10,9 +10,7 @@ export class AuthorItemComponent implements OnInit {
   
   @Input() author: Author;
 
-  authors: Author[] = [
-
-  ];
+  authors: Author[] = [];
 
   constructor() { }
 
