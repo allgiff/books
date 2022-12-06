@@ -1,1 +1,93 @@
-<p>author-edit works!</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+      <form id="contact-edit" #f="ngForm">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control required"
+              size="120"
+              max="120"
+              name="name"
+              required>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="email">Email:</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control required"
+              size="120"
+              max="255"
+              name="email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="alert alert-danger">
+                Enter a valid Email address
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="alert alert-danger" 
+           >
+                Enter a valid phone number
+            </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="imageUrl">Image URL:</label>
+            <input
+              type="text"
+              id="imageUrl"
+              class="form-control"
+              size="150"
+              max="255"
+              name="imageUrl">
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="form-group">
+            <label for="groupList">Group Contacts:</label>
+  
+            <div class="row" id="groupList"
+                style="min-height: 3rem;">
+  
+              <div>
+                <div>
+                  <app-author-item class="col-sm-11"></app-author-item>
+                  <button class="btn btn-danger col-sm-2 deleteButton">X</button>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="alert alert-danger">
+                The Name and Email fields are Required
+            </div>
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-xs-12 btn-toolbar">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-primary" type="button">Cancel</button>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>
