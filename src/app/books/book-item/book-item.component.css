@@ -3,7 +3,7 @@
     height: 11rem;
     margin: 2px;
     font-size: 1.3rem;
-    border: solid thin darkgrey;
+    border: none;
     float: left;
     padding: .25rem
   }
