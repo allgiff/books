@@ -10,10 +10,7 @@ export class BookItemComponent implements OnInit {
 
   @Input() book: Book;
 
-  books: Book[] = [
-    new Book('', '1', 'Test Book', 'This is a book', 'https://via.placeholder.com/150'),
-    new Book('', '2', 'Test Book', 'This is a book', 'https://via.placeholder.com/150')
-  ];
+  books: Book[] = [];
 
   constructor() { }
 

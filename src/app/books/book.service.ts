@@ -7,20 +7,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     providedIn: 'root'
   })
 export class BookService {
-    books: Book[] = [
-        new Book('', '1', 'Test Book', 'This is a book', 'https://via.placeholder.com/150'),
-        new Book('', '2', 'Test Book', 'This is a book', 'https://via.placeholder.com/150')
-      ];
+    books: Book[] = [];
     bookListChangedEvent = new Subject<Book[]>();
     maxBookID: number;
 
     constructor(private http: HttpClient) { 
         this.maxBookID = this.getMaxId();
       }
-
-getBooks() {
-return this.books.slice();
-}
 
 getMaxId() {
     let maxId = 0;
@@ -52,7 +45,7 @@ getMaxId() {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     // add to database
-    this.http.post<{ message: string, book: Book }>('#',
+    this.http.post<{ message: string, book: Book }>('http://localhost:3000/books/',
       book,
       { headers: headers })
       .subscribe(
@@ -77,7 +70,7 @@ getMaxId() {
     }
   
     // delete from database
-    this.http.delete('#' + book.id)
+    this.http.delete('http://localhost:3000/books/' + book.id)
       .subscribe(
         (response: Response) => {
           this.books.splice(pos, 1);
@@ -90,8 +83,8 @@ getMaxId() {
     return this.books.find((book) => book.id === id);
    }
 
-  getAllBooks() {
-    this.http.get<{message: string, books: Book[]}>('#').subscribe(
+  getBooks() {
+    this.http.get<{message: string, books: Book[]}>('http://localhost:3000/books/').subscribe(
       (bookData) => {
         this.books = bookData.books;
         this.maxBookID = this.getMaxId();
@@ -109,7 +102,7 @@ getMaxId() {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     this.http
-    .put("#", books, {
+    .put("http://localhost:3000/books/", books, {
       headers: headers,
     })
     .subscribe(() => {
@@ -134,7 +127,7 @@ getMaxId() {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
   
     // update database
-    this.http.put('#' + originalBook.id,
+    this.http.put('http://localhost:3000/books/' + originalBook.id,
       newBook, { headers: headers })
       .subscribe(
         (response: Response) => {

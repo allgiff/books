@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Book } from '../book.model';
 import { BookService } from '../book.service';
 
@@ -8,13 +9,23 @@ import { BookService } from '../book.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  @Input() book: Book;
-  books: Book[];
+  books: Book[] = [];
+  subscription: Subscription;
 
   constructor(private bookService: BookService) { }
 
-  ngOnInit(): void {
-    this.books = this.bookService.getBooks();
+  ngOnInit() {
+    this.subscription = this.bookService.bookListChangedEvent.subscribe(
+      (books: Book[]) => {
+        this.books = books;
+      }
+    );
+
+    this.bookService.getBooks();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
+
