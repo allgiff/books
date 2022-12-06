@@ -7,10 +7,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthorService {
-  authors: Author[] = [
-    new Author('', '2', 'Test Author', 'This is a Author', 'https://via.placeholder.com/150'),
-    new Author('', '2', 'Test Author', 'This is a Author', 'https://via.placeholder.com/150')
-  ];
+  authors: Author[] = [];
   authorListChangedEvent = new Subject<Author[]>();
   maxAuthorID: number;
 
@@ -29,7 +26,7 @@ export class AuthorService {
     }
 
     // make sure id of the new author is empty
-    author.id = '';
+    author._id = '';
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -51,14 +48,14 @@ export class AuthorService {
       return;
     }
   
-    const pos = this.authors.findIndex(a => a.id === author.id);
+    const pos = this.authors.findIndex(a => a._id === author._id);
   
     if (pos < 0) {
       return;
     }
   
     // delete from database
-    this.http.delete('#' + author.id)
+    this.http.delete('#' + author._id)
       .subscribe(
         (response: Response) => {
           this.authors.splice(pos, 1);
@@ -102,7 +99,7 @@ export class AuthorService {
     let maxId = 0;
 
     for (const author of this.authors) {
-      let currentId = parseInt(author.id);
+      let currentId = parseInt(author._id);
 
       if (currentId > maxId) {
         maxId = currentId;
@@ -117,20 +114,19 @@ export class AuthorService {
       return;
     }
 
-    const pos = this.authors.findIndex(d => d.id === originalAuthor.id);
+    const pos = this.authors.findIndex(d => d._id === originalAuthor._id);
 
   if (pos < 0) {
     return;
   }
 
   // set the id of the new Document to the id of the old Document
-  newAuthor.id = originalAuthor.id;
   newAuthor._id = originalAuthor._id;
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // update database
-  this.http.put('#' + originalAuthor.id,
+  this.http.put('#' + originalAuthor._id,
     newAuthor, { headers: headers })
     .subscribe(
       (response: Response) => {

@@ -44,7 +44,6 @@ export class BookEditComponent implements OnInit {
     const value = form.value;
     const newBook = new Book(
       '',
-      '',
       value.name,
       value.description,
       value.url,

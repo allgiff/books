@@ -19,7 +19,7 @@ getMaxId() {
     let maxId = 0;
 
     for (const book of this.books) {
-      let currentId = parseInt(book.id);
+      let currentId = parseInt(book._id);
 
       if (currentId > maxId) {
         maxId = currentId;
@@ -40,7 +40,7 @@ getMaxId() {
     }
 
     // make sure id of the new Book is empty
-    book.id = '';
+    book._id = '';
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -63,14 +63,14 @@ getMaxId() {
       return;
     }
   
-    const pos = this.books.findIndex(b => b.id === book.id);
+    const pos = this.books.findIndex(b => b._id === book._id);
   
     if (pos < 0) {
       return;
     }
   
     // delete from database
-    this.http.delete('http://localhost:3000/books/' + book.id)
+    this.http.delete('http://localhost:3000/books/' + book._id)
       .subscribe(
         (response: Response) => {
           this.books.splice(pos, 1);
@@ -80,7 +80,7 @@ getMaxId() {
   }
 
   getBook(id: string): Book {
-    return this.books.find((book) => book.id === id);
+    return this.books.find((book) => book._id === id);
    }
 
   getBooks() {
@@ -115,19 +115,18 @@ getMaxId() {
       return;
     }
   
-    const pos = this.books.findIndex(d => d.id === originalBook.id);
+    const pos = this.books.findIndex(d => d._id === originalBook._id);
   
     if (pos < 0) {
       return;
     }
   
-    newBook.id = originalBook.id;
     newBook._id = originalBook._id;
   
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
   
     // update database
-    this.http.put('http://localhost:3000/books/' + originalBook.id,
+    this.http.put('http://localhost:3000/books/' + originalBook._id,
       newBook, { headers: headers })
       .subscribe(
         (response: Response) => {

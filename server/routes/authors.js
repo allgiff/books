@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var sequenceGenerator = require('./sequenceGenerator');
 
 const author = require('../models/author');
 
@@ -45,10 +44,8 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    const maxAuthorId = sequenceGenerator.nextId("authors");
 
     const author = new author({
-        id: maxAuthorId,
         name: req.body.name,
         book: req.body.book,
         imageUrl: req.body.imageUrl,
@@ -75,16 +72,15 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
     author.findOne({
-        id: req.params.id
+        _id: req.params.id
     })
     .then(author => {
         author.name = req.body.name;
         author.book = req.body.book;
         author.imageUrl = req.body.imageUrl;
-        author.group = req.body.group;
 
         author.updateOne({
-            id: req.params.id
+            _id: req.params.id
         }, author)
         .then(result => {
             res
@@ -115,11 +111,11 @@ router.put('/:id', (req, res, next) => {
 
 router.delete("/id", (req, res, next) => {
     author.findOne({
-        id: req.params.id
+        _id: req.params.id
     })
     .then(author=> {
         author.deleteOne({
-            id: req.params.id
+            _id: req.params.id
         })
         .then(result => {
             res.status(204)

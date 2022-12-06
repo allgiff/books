@@ -11,8 +11,7 @@ export class AuthorItemComponent implements OnInit {
   @Input() author: Author;
 
   authors: Author[] = [
-    new Author('', '2', 'Test Author', 'This is a Author', 'https://via.placeholder.com/150'),
-    new Author('', '2', 'Test Author', 'This is a Author', 'https://via.placeholder.com/150')
+
   ];
 
   constructor() { }
