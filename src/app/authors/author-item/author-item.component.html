@@ -1,1 +1,8 @@
-<p>author-item works!</p>
+<a  [routerLink]="author.id" routerLinkActive="active" class="list-group-item clearfix">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ author?.name }}</h4>
+    </div>
+    <span class="pull-right">
+        <img [src]="author?.imageUrl" alt="{{ author?.name }}" class="img-responsive" *ngIf="author?.imageUrl">
+    </span>
+</a>
