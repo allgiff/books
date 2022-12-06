@@ -68,7 +68,7 @@ export class AuthorService {
     return this.http.get<{ message: string, author: Author }>('#' + id);
    }
 
-   getAllAuthors() {
+   getAuthors() {
     this.http.get<{message: string, authors: Author[]}>('#').subscribe(
       (authorData) => {
         this.authors = authorData.authors;

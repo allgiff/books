@@ -1,3 +1,5 @@
-<a class="list-group-item clearfix bookDiv" *ngFor="let book of books">
-    <img [src]="book.imageUrl">
+<a class="list-group-item clearfix bookDiv" 
+  [routerLink]="book._id"
+  routerLinkActive="active">
+    {{ book?.imageUrl }}
   </a>

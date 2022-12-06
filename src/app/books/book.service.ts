@@ -88,7 +88,6 @@ getMaxId() {
       (bookData) => {
         this.books = bookData.books;
         this.maxBookID = this.getMaxId();
-        this.books.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
         this.bookListChangedEvent.next(this.books.slice());
       });
   

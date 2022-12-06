@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../book.model';
+import { BookService } from '../book.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book-item',
@@ -9,12 +11,11 @@ import { Book } from '../book.model';
 export class BookItemComponent implements OnInit {
 
   @Input() book: Book;
+  subscription: Subscription;
 
-  books: Book[] = [];
-
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
+    
   }
-
 }
