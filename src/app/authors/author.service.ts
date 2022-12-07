@@ -55,7 +55,7 @@ export class AuthorService {
     }
   
     // delete from database
-    this.http.delete('http://localhost:3000/authors' + author._id)
+    this.http.delete('http://localhost:3000/authors/' + author._id)
       .subscribe(
         (response: Response) => {
           this.authors.splice(pos, 1);
@@ -65,7 +65,7 @@ export class AuthorService {
   }
 
    getAuthor(id: string) {
-    return this.http.get<{ message: string, author: Author }>('http://localhost:3000/authors' + id);
+    return this.http.get<{ message: string, author: Author }>('http://localhost:3000/authors/' + id);
    }
 
    getAuthors() {
@@ -126,7 +126,7 @@ export class AuthorService {
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // update database
-  this.http.put('http://localhost:3000/authors' + originalAuthor._id,
+  this.http.put('http://localhost:3000/authors/' + originalAuthor._id,
     newAuthor, { headers: headers })
     .subscribe(
       (response: Response) => {

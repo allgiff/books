@@ -87,7 +87,6 @@ getMaxId() {
     this.http.get<{message: string, books: Book[]}>('http://localhost:3000/books/').subscribe(
       (bookData) => {
         this.books = bookData.books;
-        this.maxBookID = this.getMaxId();
         this.bookListChangedEvent.next(this.books.slice());
       });
   
