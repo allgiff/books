@@ -21,10 +21,12 @@ export class AuthorDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = params['id'];
-        this.authorService.getAuthor(this.id)
+        
+        const id = params['id'];
+        this.authorService.getAuthor(id)
           .subscribe(authorData => {
             this.author = authorData.author;
+            
           });
       }
     );

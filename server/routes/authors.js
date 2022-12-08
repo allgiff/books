@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const author = require('../models/author');
+const Author = require('../models/author');
 
 router.get('/', (req, res, next) => {
-    author.find() 
-    .populate('group')
+    Author.find() 
+    // .populate('group')
     .then(authors => {
         res
             .status(200)
@@ -23,11 +23,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    author.findOne({
-        "id": req.params.id
-    })
-    .populate('group')
+    console.log(req.params.id);
+    Author.findById(
+        req.params.id
+    )
+    // .populate('group')
     .then(author => {
+        // console.log(author);
         res
             .status(200)
             .json({
@@ -45,11 +47,10 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
 
-    const author = new author({
+    const author = new Author({
         name: req.body.name,
         book: req.body.book,
-        imageUrl: req.body.imageUrl,
-        group: req.body.group
+        imageUrl: req.body.imageUrl
     });
 
     author.save()
@@ -71,7 +72,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-    author.findOne({
+    Author.findOne({
         _id: req.params.id
     })
     .then(author => {
@@ -109,14 +110,13 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-router.delete("/id", (req, res, next) => {
-    author.findOne({
-        _id: req.params.id
-    })
-    .then(author=> {
-        author.deleteOne({
-            _id: req.params.id
-        })
+router.delete("/:id", (req, res, next) => {
+    console.log(req.params.id);
+    Author.findByIdAndRemove(req.params.id)
+    // .then(author=> {
+    //     author.FindByIdAndDelete({
+    //         _id: req.params.id
+    //     })
         .then(result => {
             res.status(204)
             .json({
@@ -129,13 +129,12 @@ router.delete("/id", (req, res, next) => {
                 error: error
             });
         })
-    })
-    .catch(error => {
-        res.status(500).json({
-            message: 'An error occured',
-            error: error
-        });
-    })
+    // .catch(error => {
+    //     res.status(500).json({
+    //         message: 'An error occured',
+    //         error: error
+    //     });
+    // })
 })
 
 module.exports = router; 

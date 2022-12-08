@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const book = require('../models/book');
+const Book = require('../models/book');
 
 
 router.get('/', (req, res, next) => {
-    book.find() 
+    Book.find() 
     .populate('children')
     .then(books => {
         res

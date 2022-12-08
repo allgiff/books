@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from '../book.model';
 import { BookService } from '../book.service';
@@ -22,7 +22,8 @@ export class BookDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.bookService.getBook(this.id);
+        console.log(this.id);
+        this.book = this.bookService.getBook(this.id);
 
         //TEMP
         console.log(this.book);

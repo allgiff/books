@@ -9,10 +9,9 @@ import { Subject } from 'rxjs';
 export class AuthorService {
   authors: Author[] = [];
   authorListChangedEvent = new Subject<Author[]>();
-  maxAuthorID: number;
 
   constructor(private http: HttpClient) {
-    this.maxAuthorID = this.getMaxId();
+
    }
 
    sortAndSend() {
@@ -53,6 +52,9 @@ export class AuthorService {
     if (pos < 0) {
       return;
     }
+
+    console.log(`http://localhost:3000/authors/${author._id}`);
+    
   
     // delete from database
     this.http.delete('http://localhost:3000/authors/' + author._id)
@@ -65,6 +67,8 @@ export class AuthorService {
   }
 
    getAuthor(id: string) {
+    console.log(`http://localhost:3000/authors/${id}`);
+    
     return this.http.get<{ message: string, author: Author }>('http://localhost:3000/authors/' + id);
    }
 
@@ -72,7 +76,6 @@ export class AuthorService {
     this.http.get<{message: string, authors: Author[]}>('http://localhost:3000/authors').subscribe(
       (authorData) => {
         this.authors = authorData.authors;
-        this.maxAuthorID = this.getMaxId();
         this.authors.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
         this.authorListChangedEvent.next(this.authors.slice());
       });
@@ -93,20 +96,6 @@ export class AuthorService {
     .subscribe(() => {
       this.authorListChangedEvent.next(this.authors.slice());
     });
-  }
-
-   getMaxId() {
-    let maxId = 0;
-
-    for (const author of this.authors) {
-      let currentId = parseInt(author._id);
-
-      if (currentId > maxId) {
-        maxId = currentId;
-      }
-    }
-
-    return maxId;
   }
 
   updateAuthor(originalAuthor: Author, newAuthor: Author) {
