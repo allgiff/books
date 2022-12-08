@@ -28,5 +28,9 @@ export class AuthorListComponent implements OnInit {
   ngOnDestroy() {
     this.subsription.unsubscribe();
   }
+
+  search(value: string) {
+    this.term = value;
+  }
 }
 

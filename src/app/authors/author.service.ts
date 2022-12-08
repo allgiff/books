@@ -36,7 +36,7 @@ export class AuthorService {
       { headers: headers })
       .subscribe(
         (responseData) => {
-          // add new document to documents
+          // add new author to authors
           this.authors.push(responseData.author);
           this.sortAndSend();
         }

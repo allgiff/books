@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-body">
-      <form id="contact-edit" #f="ngForm">
+      <form id="author-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="row">
           <div class="col-sm-12 form-group">
             <label for="name">Name:</label>
@@ -11,36 +11,26 @@
               size="120"
               max="120"
               name="name"
+              [ngModel]="author?.name"
+              #name="ngModel"
               required>
           </div>
         </div>
   
         <div class="row">
           <div class="col-sm-12 form-group">
-            <label for="email">Email:</label>
+            <label for="book">Book:</label>
             <input
               type="text"
-              id="email"
+              id="book"
               class="form-control required"
               size="120"
               max="255"
-              name="email"
-              required
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              name="book"
+              [ngModel]="author?.book"
+              #email="ngModel"
+              required>
           </div>
-        </div>
-
-        <div class="row">
-            <div class="alert alert-danger">
-                Enter a valid Email address
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="alert alert-danger" 
-           >
-                Enter a valid phone number
-            </div>
         </div>
   
         <div class="row">
@@ -52,42 +42,20 @@
               class="form-control"
               size="150"
               max="255"
-              name="imageUrl">
+              name="imageUrl"
+              [ngModel]="author?.imageUrl">
           </div>
-        </div>
-  
-        <div class="row">
-          <div class="form-group">
-            <label for="groupList">Group Contacts:</label>
-  
-            <div class="row" id="groupList"
-                style="min-height: 3rem;">
-  
-              <div>
-                <div>
-                  <app-author-item class="col-sm-11"></app-author-item>
-                  <button class="btn btn-danger col-sm-2 deleteButton">X</button>
-                </div>
-              </div>
-            </div>
-  
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="alert alert-danger">
-                The Name and Email fields are Required
-            </div>
         </div>
   
   
         <div class="row">
           <div class="col-xs-12 btn-toolbar">
             <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
-            <button class="btn btn-primary" type="button">Cancel</button>
+            <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
           </div>
         </div>
   
       </form>
     </div>
   </div>
+  

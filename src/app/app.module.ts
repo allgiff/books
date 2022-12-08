@@ -16,6 +16,7 @@ import { AuthorDetailComponent } from './authors/author-detail/author-detail.com
 import { AuthorEditComponent } from './authors/author-edit/author-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { AuthorsFilterPipe } from './authors/authors-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     AuthorListComponent,
     AuthorItemComponent,
     AuthorDetailComponent,
-    AuthorEditComponent
+    AuthorEditComponent,
+    AuthorsFilterPipe
   ],
   imports: [
     BrowserModule,

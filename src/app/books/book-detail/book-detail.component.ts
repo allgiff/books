@@ -22,7 +22,7 @@ export class BookDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.book = this.bookService.getBook(this.id);
+        this.bookService.getBook(this.id);
 
         //TEMP
         console.log(this.book);
