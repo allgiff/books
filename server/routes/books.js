@@ -6,7 +6,7 @@ const Book = require('../models/book');
 
 router.get('/', (req, res, next) => {
     Book.find() 
-    .populate('children')
+    //.populate('children')
     .then(books => {
         res
             .status(200)
@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
     const book = new Book({
       name: req.body.name,
       description: req.body.description,
-      url: req.body.url
+      imageUrl: req.body.imageUrl
     });
   
     book.save()
@@ -52,7 +52,7 @@ router.put('/:id', (req, res, next) => {
       .then(book => {
         book.name = req.body.name;
         book.description = req.body.description;
-        book.url = req.body.url;
+        book.imageUrl = req.body.imageUrl;
   
         Book.updateOne({ _id: req.params.id }, book)
           .then(result => {

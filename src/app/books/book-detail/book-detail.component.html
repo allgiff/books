@@ -10,6 +10,9 @@
     <div class="panel-body">
       <div class="pad-left-right">
         <div class="row">
+            <img [src]="book.imageUrl" alt="{{ book.name }}" class="img-responsive" *ngIf="book?.imageUrl">
+          </div>
+        <div class="row">
           <label>Title:</label>
           <span class="label-value">{{ book?.name }}</span>
         </div>
