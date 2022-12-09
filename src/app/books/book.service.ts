@@ -50,7 +50,7 @@ getMaxId() {
       { headers: headers })
       .subscribe(
         (responseData) => {
-          // add new document to documents
+          // add new book to books
           this.books.push(responseData.book);
           this.sortAndSend();
         }
