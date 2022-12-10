@@ -46,7 +46,7 @@ export class BookEditComponent implements OnInit {
       '',
       value.name,
       value.description,
-      value.imageUrl,
+      value.url,
     );
 
     if (this.editMode) {

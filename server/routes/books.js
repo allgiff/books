@@ -23,6 +23,30 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.get('/:id', (req, res, next) => {
+  //console.log(req.params.id);
+  Book.findById(
+      req.params.id
+  )
+  // .populate('group')
+  .then(book => {
+      // console.log(author);
+      res
+          .status(200)
+          .json({
+              message: 'Book Fetched Successfully',
+              book: book
+          });
+  })
+  .catch(error => {
+      res.status(500).json({
+          message: 'an error occured',
+          error: error
+      });
+  });
+});
+
+
 router.post('/', (req, res, next) => {
   
     const book = new Book({
